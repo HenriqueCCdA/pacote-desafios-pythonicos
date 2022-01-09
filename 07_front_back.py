@@ -10,9 +10,21 @@ Exemplo: 'abcde', a metade da frente é 'abc' e a de trás é 'de'.
 Finalmente, dadas duas strings a e b, retorne uma string na forma:
 a-frente + b-frente + a-trás + b-trás
 """
+
+def dividir_string(string):
+    comprimento = len(string)
+
+    if comprimento % 2 == 0:
+        return string[:comprimento//2], string[comprimento//2:]
+
+    return string[:comprimento//2 + 1], string[comprimento//2 + 1:]
+
+
 def front_back(a, b):
     # +++ SUA SOLUÇÃO +++
-    return
+    a_frente, a_tras = dividir_string(a)
+    b_frente, b_tras = dividir_string(b)
+    return a_frente + b_frente + a_tras + b_tras
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
