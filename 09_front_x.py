@@ -11,9 +11,15 @@ Dica: Isso pode ser resolvido criando 2 listas e ordenando cada uma
 antes de combina-las.
 """
 
-def front_x(words):
+def front_x_v1(words):
     # +++ SUA SOLUÇÃO +++
-    return
+
+    palavras_x = [ word for word in words if 'x' == word[0] ]
+    palavras_sem_x = [ word for word in words if 'x' != word[0] ]
+    return sorted(palavras_x) + sorted(palavras_sem_x)
+
+
+front_x = front_x_v1
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
