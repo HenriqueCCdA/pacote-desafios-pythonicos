@@ -55,7 +55,55 @@ import sys
 
 
 # +++ SUA SOLUÇÃO +++
-# Defina as funções print_words(filename) e print_top(filename).
+
+def lendo_arquivo(filename):
+    with open(filename) as file:
+        lines = file.readlines()
+
+    return lines
+
+def conta_palavras(lines):
+    count_words = dict()
+    for line in lines:
+        words = line.split()
+        for word in words:
+            try:
+                count_words[word.lower()] +=1
+            except:
+                count_words[word.lower()] = 1
+
+    return count_words
+
+def dicicionario_para_lista_de_tuplas(count_words):
+    return [(chave, valor) for chave, valor in count_words.items()]
+
+
+def conta_palavras_arquivo(filename):
+    lines = lendo_arquivo(filename)
+
+    count_words = conta_palavras(lines)
+
+    count_words_list = dicicionario_para_lista_de_tuplas(count_words)
+
+    return count_words_list
+
+
+def print_words(filename):
+
+    count_words_list = conta_palavras_arquivo(filename)
+    count_words_list = sorted(count_words_list, key=lambda x: x[1], reverse=True)
+
+    for word, count in count_words_list:
+        print(word, count)
+
+
+def print_top(filename):
+
+    count_words_list = conta_palavras_arquivo(filename)
+    count_words_list = sorted(count_words_list, key=lambda x: x[1], reverse=True)
+
+    for word, count in count_words_list[:19]:
+        print(word, count)
 
 
 # A função abaixo chama print_words() ou print_top() de acordo com os
